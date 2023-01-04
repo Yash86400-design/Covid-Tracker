@@ -20,15 +20,23 @@
 <body>
   <h3 class="text-center">Get Intuitive Covid Data Representation of Any Country</h3>
   <form class="container-fluid" id="form">
-    <input type="text" placeholder="Select Country" value="" id="country">
+    <!-- <input type="text" placeholder="Select Country" value="" id="country"> -->
+    <label for="country"></label>
+
+    <select name="country" id="country">
+      <!-- <option value="china">China</option>
+      <option value="india">India</option>
+      <option value="pakistan">Pakistan</option>
+      <option value="bangladesh">Bangladesh</option> -->
+    </select>
+
     <input type="datetime-local" name="firstDate" id="firstDate" value="2020-01-01T00:00" min="2020-01-01T00:00"
       max="2022-12-31T23:59">
     <input type="datetime-local" name="lastDate" id="lastDate" value="2020-01-01T00:00" min="2020-01-01T00:00"
       max="2022-12-31T23:59">
     <button class="btn btn-outline-info" id="submitButton" onclick="submitButton">Show</button>
   </form>
-
-
+  
   <script type="module" src="app.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </body>
