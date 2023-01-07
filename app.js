@@ -1,12 +1,13 @@
-window.onload = function insertingCountryList() {
+window.onload = function () {
   if ("array" in localStorage && "object" in localStorage) {
     const countriesArray = JSON.parse(localStorage.getItem("array"))
     const countriesObject = JSON.parse(localStorage.getItem("object"))
     createSelectItem(countriesArray, countriesObject)
   } else {
-    fetchListOfCountries()
+    fetchCountries()
     // console.log("I Hope You Are not get called");
   }
+  currentDateForSecondDate()
 }
 
 const button = document.querySelector("#submitButton");
@@ -21,9 +22,10 @@ function dataGather(event) {
   const lastDate = document.querySelector("#lastDate").value;
 
   console.log(country, firstDate, lastDate);
+  graphDraw(country, firstDate, lastDate)
 };
 
-function fetchListOfCountries() {
+function fetchCountries() {
   fetch("https://api.covid19api.com/countries")
     .then((response) => response.json())
     .then(function (responseData) {
@@ -51,7 +53,43 @@ function createSelectItem(data, objectOfSlug) {
 
 function createOptionItem(content, value) {
   let option = document.createElement("option");
+  if (content === "India") {
+    option.textContent = content;
+    option.value = value;
+    option.selected = true;
+  }
   option.textContent = content;
   option.value = value;
   return option;
 };
+
+function graphDraw(country, firstDate, lastDate) {
+  const requiredFirstDate = firstDate + "T00:00:00Z"
+  const requiredLastDate = lastDate + "T00:00:00Z"
+
+  fetch(`https://api.covid19api.com/country/${country}?from=${requiredFirstDate}&to=${requiredLastDate}`)
+    .then((response) => response.json())
+    .then((data) => draw(data))
+}
+
+function currentDateForSecondDate() {
+  // We'll do it later just before production.
+}
+
+function draw(data) {
+  let countryName = data[0]["Country"]
+  let requiredDataStructure = {}
+
+  for (let i = 0; i < data.length; i++) {
+    requiredDataStructure[data[i]["Date"].slice(0, 10)] = {
+      "confirmedCase": data[i]["Confirmed"],
+      "activeCase": data[i]["Active"],
+      "death": data[i]["Deaths"],
+      "recovered": data[i]["Recovered"],
+    };
+  };
+
+  console.log(countryName);
+  console.log(requiredDataStructure);
+
+}
