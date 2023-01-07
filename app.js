@@ -77,7 +77,9 @@ function currentDateForSecondDate() {
 }
 
 function draw(data) {
-  let countryName = data[0]["Country"]
+  console.log(data);
+  // Don't forget to handle those cases where data is not available.
+
   let requiredDataStructure = {}
 
   for (let i = 0; i < data.length; i++) {
@@ -89,7 +91,7 @@ function draw(data) {
     };
   };
 
-  console.log(countryName);
+  // console.log(countryName);
   console.log(requiredDataStructure);
 
 }
