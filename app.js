@@ -77,9 +77,9 @@ function currentDateForSecondDate() {
 }
 
 function draw(data) {
-  console.log(data);
   // Don't forget to handle those cases where data is not available.
-
+  /*
+    // Sorry JSON, You are absolutely dope, but I can do this with array also, so I'll go with that, love you.
   let requiredDataStructure = {}
 
   for (let i = 0; i < data.length; i++) {
@@ -90,8 +90,82 @@ function draw(data) {
       "recovered": data[i]["Recovered"],
     };
   };
+  console.log(requiredDataStructure["2020-10-02"]);
+  */
+  if (!data) {
+    console.log("No Data Found");
+  }
+  else {
+    let dates = []
+    let confirmedCases = []
+    let activeCases = []
+    let deaths = []
+    let recoveredPatients = []
 
-  // console.log(countryName);
-  console.log(requiredDataStructure);
+    for (let i = 0; i < data.length; i++) {
+      dates.push([data[i]["Date"].slice(0, 10)])
+      confirmedCases.push(data[i]["Confirmed"])
+      activeCases.push(data[i]["Active"])
+      deaths.push(data[i]["Deaths"])
+      recoveredPatients.push(data[i]["Recovered"])
+    };
 
+    // To clear the canvas if there is any chart available there.
+    document.querySelector("#chartReport").innerHTML = "<canvas id='canvas'></canvas>";
+
+    const ctx = document.getElementById('canvas');
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: dates,
+        datasets: [{
+          label: 'Confirmed Cases',
+          // data: [2, 4, 6, 8, 16, 32],
+          data: confirmedCases,
+          backgroundColor: 'transparent',
+          borderColor: 'darkRed',
+          borderWidth: 0.5
+        },
+        {
+          label: 'Active Cases',
+          // data: [13, 20, 6, 8, 1, 9],
+          data: activeCases,
+          backgroundColor: 'transparent',
+          borderColor: 'purple',
+          borderWidth: 0.5
+        },
+        {
+          label: 'Recovered',
+          // data: [2, 3, 4, 5, 6, 7],
+          data: recoveredPatients,
+          backgroundColor: 'transparent',
+          borderColor: 'lightGreen',
+          borderWidth: 0.5
+        },
+        {
+          label: 'Deaths',
+          // data: [12, 19, 3, 5, 2, 3],
+          data: deaths,
+          backgroundColor: 'transparent',
+          borderColor: 'red',
+          borderWidth: 0.5
+        }
+        ]
+      },
+      options: {
+        elemenst: {
+          line: {
+            tension: 0
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
 }
