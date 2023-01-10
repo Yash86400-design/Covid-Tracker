@@ -9,6 +9,14 @@
   box-sizing: border-box;
 }
 
+html {
+  background: url("https://res.cloudinary.com/duxhnzvyw/image/upload/v1673247008/Covid%20Tracker/Time_Flies_c9frsl.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
   font-family: arial;
   font-size: 16px;
@@ -17,6 +25,76 @@ body {
   justify-content: space-around;
   /* align-items: center; */
   min-height: 100vh;
+  min-width: 100vw;
+}
+
+@media screen and (max-width: 576px) {
+  body {
+    overflow-x: hidden;
+  }
+  
+  h3 {
+    font-size: 0.75em !important;
+    margin: 15px 0;
+  }
+
+  .container-fluid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+  }
+
+  select {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    margin-bottom: 10px;
+  }
+  
+  form input {
+    padding: 2px;
+    background: white;
+  }
+
+  button {
+    margin: 10px;
+    padding: 0px;
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  
+  h3 {
+    font-size: 1em !important;
+    margin: 15px 0;
+  }
+
+  .container-fluid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+  }
+
+  select {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    margin-bottom: 10px;
+  }
+  
+  form input {
+    padding: 2px;
+    background: white;
+  }
+
+  button {
+    margin: 10px;
+    padding: 0px;
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
+
 }
 
 .container {
@@ -26,29 +104,67 @@ body {
 h3 {
   text-align: center;
   font-size: 1.5em;
+  color: white;
 }
 
+label {
+  color: white;
+}
 form {
   margin: 50px 0px;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+
+form select {
+  border: none;
+  outline: none;
+  background: linear-gradient(135deg, rgb(255, 206, 236) 0%, rgb(152, 150, 240) 100%);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+form input {
+  border: none;
+  outline: none;
+  background: #7bdcb5;
+  padding: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: whitesmoke;
+  margin: 0px 5px;
 }
 
 form button {
   border-radius: 5px;
   border: none;
-  padding: 10px;
+  padding: 20px 30px;
   background: linear-gradient(#e66465, #9198e5);
   color: white;
   cursor: pointer;
+  transition: all .5s;
 }
 
 form button:hover {
-  background: #555;
+  background: linear-gradient(135deg, rgb(2, 3, 129) 0%, rgb(40, 116, 252) 100%);
   color: white;
+
+}
+
+#chartReport {
+  display: flex;
+  flex-direction: column;
 }
 
 #canvas {
-  width: 100%;
+  width: auto;
+  margin: 5px 0;
+}
+
+.bg-white {
+  background: white;
+  margin: 10px;
 }

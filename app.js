@@ -21,7 +21,6 @@ function dataGather(event) {
   const firstDate = document.querySelector("#firstDate").value;
   const lastDate = document.querySelector("#lastDate").value;
 
-  console.log(country, firstDate, lastDate);
   graphDraw(country, firstDate, lastDate)
 };
 
@@ -78,20 +77,6 @@ function currentDateForSecondDate() {
 
 function draw(data) {
   // Don't forget to handle those cases where data is not available.
-  /*
-    // Sorry JSON, You are absolutely dope, but I can do this with array also, so I'll go with that, love you.
-  let requiredDataStructure = {}
-
-  for (let i = 0; i < data.length; i++) {
-    requiredDataStructure[data[i]["Date"].slice(0, 10)] = {
-      "confirmedCase": data[i]["Confirmed"],
-      "activeCase": data[i]["Active"],
-      "death": data[i]["Deaths"],
-      "recovered": data[i]["Recovered"],
-    };
-  };
-  console.log(requiredDataStructure["2020-10-02"]);
-  */
   if (!data) {
     console.log("No Data Found");
   }
@@ -111,9 +96,12 @@ function draw(data) {
     };
 
     // To clear the canvas if there is any chart available there.
-    document.querySelector("#chartReport").innerHTML = "<canvas id='canvas'></canvas>";
+    document.querySelector("#chartReport").innerHTML = "<canvas id='canvas-1' class='bg-white'></canvas>\n <canvas id='canvas-2' class='bg-white'></canvas>\n <canvas id='canvas-3' class='bg-white'></canvas>\n <canvas id='canvas-4' class='bg-white'></canvas>";
 
-    const ctx = document.getElementById('canvas');
+    const ctx = document.getElementById('canvas-1');
+    const ctx2 = document.getElementById('canvas-2');
+    const ctx3 = document.getElementById('canvas-3');
+    const ctx4 = document.getElementById('canvas-4');
 
     new Chart(ctx, {
       type: 'line',
@@ -125,7 +113,7 @@ function draw(data) {
           // data: [2, 4, 6, 8, 16, 32],
           data: confirmedCases,
           backgroundColor: 'transparent',
-          borderColor: 'darkRed',
+          borderColor: '#FD8A8A',
           borderWidth: 0.5
         },
         {
@@ -133,7 +121,7 @@ function draw(data) {
           // data: [13, 20, 6, 8, 1, 9],
           data: activeCases,
           backgroundColor: 'transparent',
-          borderColor: 'purple',
+          borderColor: '#FF7B54',
           borderWidth: 0.5
         },
         {
@@ -141,7 +129,7 @@ function draw(data) {
           // data: [2, 3, 4, 5, 6, 7],
           data: recoveredPatients,
           backgroundColor: 'transparent',
-          borderColor: 'lightGreen',
+          borderColor: '#6ECCAF',
           borderWidth: 0.5
         },
         {
@@ -149,13 +137,20 @@ function draw(data) {
           // data: [12, 19, 3, 5, 2, 3],
           data: deaths,
           backgroundColor: 'transparent',
-          borderColor: 'red',
+          borderColor: '#CD0404',
           borderWidth: 0.5
         }
         ]
       },
       options: {
-        elemenst: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: "Complete Summary of Covid Data"
+          }
+        },
+        elements: {
           line: {
             tension: 0
           }
@@ -163,7 +158,119 @@ function draw(data) {
         scales: {
           y: {
             beginAtZero: true
+          },
+        }
+      }
+    });
+
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: dates,
+        datasets: [{
+          label: 'Confirmed Cases',
+          // data: [2, 4, 6, 8, 16, 32],
+          data: confirmedCases,
+          backgroundColor: 'transparent',
+          borderColor: '#FD8A8A',
+          borderWidth: 1.5
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: "Confirmed Case Chart"
           }
+        },
+        elements: {
+          line: {
+            tension: 0
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          },
+        }
+      }
+    });
+
+    new Chart(ctx3, {
+      type: 'line',
+      data: {
+        // labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        labels: dates,
+        datasets: [{
+          label: 'Total Deaths',
+          // data: [2, 4, 6, 8, 16, 32],
+          data: deaths,
+          backgroundColor: 'transparent',
+          borderColor: '#CD0404',
+          borderWidth: 1.5
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: "Total Deaths Summary"
+          }
+        },
+        elements: {
+          line: {
+            tension: 0
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          },
+        }
+      }
+    });
+
+    new Chart(ctx4, {
+      type: 'line',
+      data: {
+        labels: dates,
+        datasets: [{
+          label: 'Confirmed Cases',
+          // data: [2, 4, 6, 8, 16, 32],
+          data: confirmedCases,
+          backgroundColor: 'transparent',
+          borderColor: '#FD8A8A',
+          borderWidth: 1
+        },
+        {
+          label: 'Total Deaths',
+          // data: [2, 4, 6, 8, 16, 32],
+          data: deaths,
+          backgroundColor: 'transparent',
+          borderColor: '#CD0404',
+          borderWidth: 1
+        }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: "Confirmed Cases and Total Deaths Comparison"
+          }
+        },
+        elements: {
+          line: {
+            tension: 0
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          },
         }
       }
     });
