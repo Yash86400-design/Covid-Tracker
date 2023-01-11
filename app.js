@@ -164,8 +164,8 @@ function draw(data) {
         ]
       },
       options: {
-        // maintainAspectRatio: true,
-        // responsive: true,
+        maintainAspectRatio: true,
+        responsive: true,
         plugins: {
           title: {
             display: true,
@@ -198,6 +198,9 @@ function draw(data) {
         }]
       },
       options: {
+        maintainAspectRatio: true,
+        responsive: true,
+
         plugins: {
           title: {
             display: true,
@@ -230,6 +233,9 @@ function draw(data) {
         }]
       },
       options: {
+        maintainAspectRatio: true,
+        responsive: true,
+
         plugins: {
           title: {
             display: true,
@@ -270,6 +276,9 @@ function draw(data) {
         ]
       },
       options: {
+        maintainAspectRatio: true,
+        responsive: true,
+
         plugins: {
           title: {
             display: true,
