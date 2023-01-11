@@ -23,93 +23,24 @@ body {
   margin: 0;
   display: flex;
   justify-content: space-around;
-  /* align-items: center; */
   min-height: 100vh;
   min-width: 100vw;
 }
 
-@media screen and (max-width: 576px) {
-  body {
-    overflow-x: hidden;
-  }
-  
-  h3 {
-    font-size: 0.75em !important;
-    margin: 15px 0;
-  }
-
-  .container-fluid {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-  }
-
-  select {
-    grid-column-start: 1;
-    grid-column-end: 5;
-    margin-bottom: 10px;
-  }
-  
-  form input {
-    padding: 2px;
-    background: white;
-  }
-
-  button {
-    margin: 10px;
-    padding: 0px;
-    grid-column-start: 2;
-    grid-column-end: 4;
-  }
-}
-
-@media screen and (min-width: 576px) and (max-width: 768px) {
-  body {
-    overflow-x: hidden;
-  }
-  
-  h3 {
-    font-size: 1em !important;
-    margin: 15px 0;
-  }
-
-  .container-fluid {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-  }
-
-  select {
-    grid-column-start: 1;
-    grid-column-end: 5;
-    margin-bottom: 10px;
-  }
-  
-  form input {
-    padding: 2px;
-    background: white;
-  }
-
-  button {
-    margin: 10px;
-    padding: 0px;
-    grid-column-start: 2;
-    grid-column-end: 4;
-  }
-
-}
-
-.container {
-  width: 90%;
-}
 
 h3 {
   text-align: center;
   font-size: 1.5em;
-  color: white;
+  background-color: #ff8177;
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  background-size: 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }
 
-label {
-  color: white;
-}
 form {
   margin: 50px 0px;
   display: flex;
@@ -154,17 +85,131 @@ form button:hover {
 
 }
 
+label {
+  color: white;
+  padding: 10px;
+  font-family: Consolas;
+}
+
+
 #chartReport {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#canvas {
-  width: auto;
-  margin: 5px 0;
-}
-
-.bg-white {
+.chartBox {
+  width: 700px;
+  height: 350px;
   background: white;
   margin: 10px;
+  border-radius: 10px;
+  border: 5px solid pink;
+}
+
+.container {
+  width: 90%;
+}
+
+.dates {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@media screen and (max-width: 576px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  button {
+    margin: 10px;
+    padding: 20px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  h3 {
+    font-size: 0.85em;
+    margin: 15px 0 0px;
+  }
+
+  form {
+    margin: 20px 10px;
+  }
+
+  label {
+    font-size: 12px;
+  }
+
+  select {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    margin-bottom: 10px;
+  }
+
+  .button-class {
+    padding: 10px;
+  }
+
+  .container-fluid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+  }
+
+  .chartBox {
+    width: 90vw;
+    height: 35vh;
+  }
+
+  .dates {
+    display: flex;
+  }
+
+  .input-class {
+    padding: 10px;
+  }
+
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  form {
+    margin: 25px 0 0;
+  }
+
+  form .dates .input-class {
+    padding: 15px;
+  }
+
+  h3 {
+    font-size: 1.5em;
+    margin: 15px 0px 0px;
+  }
+
+  select {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    margin-bottom: 10px;
+  }
+
+  .container-fluid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+  }
+
+  .chartBox {
+    width: 80vw;
+    height: 40vh;
+  }
+
+  .dates {
+    display: flex;
+  }
+
 }

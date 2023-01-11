@@ -5,7 +5,6 @@ window.onload = function () {
     createSelectItem(countriesArray, countriesObject)
   } else {
     fetchCountries()
-    // console.log("I Hope You Are not get called");
   }
   currentDateForSecondDate()
 }
@@ -72,7 +71,32 @@ function graphDraw(country, firstDate, lastDate) {
 }
 
 function currentDateForSecondDate() {
-  // We'll do it later just before production.
+  let d = new Date(),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2)
+    month = '0' + month;
+  if (day.length < 2)
+    day = '0' + day;
+
+  let fullDate = [year, month, day].join('-');
+  document.querySelector("#lastDate").max = fullDate
+
+  /*
+  let day = new Date().getDay()
+  let month = new Date().getMonth() + 1
+  let year = new Date().getFullYear()
+  if (month.length < 10) {
+    month = "0" + month;
+  };
+  if (day.length < 10) {
+    day = "0" + day;
+  };
+  let fullDate = `${year}-${month + 1}-${day}`
+  document.querySelector(".dates:nth-child(3)").innerHTML = `\n        <label for=\"lastDate\">Select End Date: </label>\n        <input class=\"input-class\" type=\"date\" name=\"lastDate\" id=\"lastDate\" value=\"2020-10-02\" min=\"2020-01-02\" max=\"${fullDate}\">\n      `
+  */
 }
 
 function draw(data) {
@@ -96,7 +120,7 @@ function draw(data) {
     };
 
     // To clear the canvas if there is any chart available there.
-    document.querySelector("#chartReport").innerHTML = "<canvas id='canvas-1' class='bg-white'></canvas>\n <canvas id='canvas-2' class='bg-white'></canvas>\n <canvas id='canvas-3' class='bg-white'></canvas>\n <canvas id='canvas-4' class='bg-white'></canvas>";
+    document.querySelector("#chartReport").innerHTML = '\n      <div class="chartBox">\n        <canvas id="canvas-1"></canvas>\n      </div>\n      <div class="chartBox">\n        <canvas id="canvas-2"></canvas>\n      </div>\n      <div class="chartBox">\n        <canvas id="canvas-3"></canvas>\n      </div>\n      <div class="chartBox">\n        <canvas id="canvas-4"></canvas>\n      </div>\n    '
 
     const ctx = document.getElementById('canvas-1');
     const ctx2 = document.getElementById('canvas-2');
@@ -118,7 +142,6 @@ function draw(data) {
         },
         {
           label: 'Active Cases',
-          // data: [13, 20, 6, 8, 1, 9],
           data: activeCases,
           backgroundColor: 'transparent',
           borderColor: '#FF7B54',
@@ -126,7 +149,6 @@ function draw(data) {
         },
         {
           label: 'Recovered',
-          // data: [2, 3, 4, 5, 6, 7],
           data: recoveredPatients,
           backgroundColor: 'transparent',
           borderColor: '#6ECCAF',
@@ -134,7 +156,6 @@ function draw(data) {
         },
         {
           label: 'Deaths',
-          // data: [12, 19, 3, 5, 2, 3],
           data: deaths,
           backgroundColor: 'transparent',
           borderColor: '#CD0404',
@@ -143,7 +164,8 @@ function draw(data) {
         ]
       },
       options: {
-        responsive: true,
+        // maintainAspectRatio: true,
+        // responsive: true,
         plugins: {
           title: {
             display: true,
@@ -169,7 +191,6 @@ function draw(data) {
         labels: dates,
         datasets: [{
           label: 'Confirmed Cases',
-          // data: [2, 4, 6, 8, 16, 32],
           data: confirmedCases,
           backgroundColor: 'transparent',
           borderColor: '#FD8A8A',
@@ -177,7 +198,6 @@ function draw(data) {
         }]
       },
       options: {
-        responsive: true,
         plugins: {
           title: {
             display: true,
@@ -200,11 +220,9 @@ function draw(data) {
     new Chart(ctx3, {
       type: 'line',
       data: {
-        // labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
         labels: dates,
         datasets: [{
           label: 'Total Deaths',
-          // data: [2, 4, 6, 8, 16, 32],
           data: deaths,
           backgroundColor: 'transparent',
           borderColor: '#CD0404',
@@ -212,7 +230,6 @@ function draw(data) {
         }]
       },
       options: {
-        responsive: true,
         plugins: {
           title: {
             display: true,
@@ -238,7 +255,6 @@ function draw(data) {
         labels: dates,
         datasets: [{
           label: 'Confirmed Cases',
-          // data: [2, 4, 6, 8, 16, 32],
           data: confirmedCases,
           backgroundColor: 'transparent',
           borderColor: '#FD8A8A',
@@ -246,7 +262,6 @@ function draw(data) {
         },
         {
           label: 'Total Deaths',
-          // data: [2, 4, 6, 8, 16, 32],
           data: deaths,
           backgroundColor: 'transparent',
           borderColor: '#CD0404',
@@ -255,7 +270,6 @@ function draw(data) {
         ]
       },
       options: {
-        responsive: true,
         plugins: {
           title: {
             display: true,
